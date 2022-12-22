@@ -1,0 +1,7 @@
+<div style="text-align: center;" class="px-3 my-5">
+  <% if @attempt.phase == "begin" %>
+    <a href="<%= quiz_index_path %>">Start a simple personality test.</a>
+  <% else %>
+    Thanks for playing!
+  <% end %>
+</div>
