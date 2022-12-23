@@ -1,77 +1,45 @@
 <main class="px-3 my-5">
-  <% if @message.present? %>
-    <span style="color: #2874a6"><%= @message %></span>
-  <% end %>
   <% if @attempt.phase == "begin" %>
     <% @attempt.current_question_number == 9 %>
     <h3>Please enter your given name to start the quiz.</h3>
-    <%= form_for @attempt, url: '/quiz/start' do |f| %>
-      <%= f.text_field :taker, placeholder: "Enter your name" %>
-      <%= f.hidden_field :quiz_id %>
-      <%= f.hidden_field :number_correct %>
-      <%= f.hidden_field :current_question_number %>
-      <%= f.hidden_field :phase %>
-      <%= f.submit "Start the Quiz" %>
-    <% end %>
+    <%= render 'form', url: '/quiz/start', btn_text: "Start the Quiz", ans: false %>
   <% else %>
     <% current_question = @questions[@attempt.current_question_number - 1] %>
     <% if @attempt.current_question_number > @questions.size %>
       <% @attempt.phase = "quiz" %>
       <b>You have completed the quiz!</b><br/><br/>
       You got <%= @attempt.number_correct %> question(s) correct out of <%= @questions.size %>. <br/><br/>
-      <%= form_for @attempt, url: '/quiz/menu' do |f| %>
-        <%= f.hidden_field :quiz_id %>
-        <%= f.hidden_field :number_correct %>
-        <%= f.hidden_field :taker %>
-        <%= f.hidden_field :current_question_number %>
-        <%= f.hidden_field :phase %>
-        <%= f.submit "Go back to the main menu" %>
-      <% end %>
+      <%= render 'form', url: '/quiz/menu', btn_text: "Go back to the main menu", ans: false  %>
     <% else %>
-      <b>Quiz:</b> <%= @quiz.name %>&nbsp;&nbsp;&nbsp;
-      <b>Question</b> #<%= @attempt.current_question_number %> of <%= @questions.size %>&nbsp;&nbsp;&nbsp;
-      <b>Name:</b> <%= @attempt.taker %><br/><br/>
-      <b><%= current_question.question %></b><br/>
-      <table>
-        <tr>
-          <td>A.</td>
-          <td style="text-align: left;">&nbsp;&nbsp;<%= current_question.option_a %></td>
-        </tr>
-        <tr>
-          <td>B.</td>
-          <td style="text-align: left;">&nbsp;&nbsp;<%= current_question.option_b %></td>
-        </tr>
-        <tr>
-          <td>C.</td>
-          <td style="text-align: left;">&nbsp;&nbsp;<%= current_question.option_c %></td>
-        </tr>
-        <tr>
-          <td>D.</td>
-          <td style="text-align: left;">&nbsp;&nbsp;<%= current_question.option_d %></td>
-        </tr>
-      </table>
-      </td>
-      </tr>
-      <tr>
-        <td colspan="3" style="text-align: center;">
-          <br/>
-          <%#= image_tag("Question#{@attempt.current_question_number}.png")%>
-        </td>
-      </tr>
-      <tr>
-        <td width="20%">&nbsp;</td>
-        <td width="60%" style="text-align: center;">
-          <br/>
-          <%= form_for @attempt, url: '/quiz/answer' do |f| %>
-            <%= f.select :answer, [["A", "A"], ["B", "B"], ["C", "C"], ["D", "D"]],
-                         { include_blank: false } %>
-            <%= f.hidden_field :quiz_id %>
-            <%= f.hidden_field :number_correct %>
-            <%= f.hidden_field :taker %>
-            <%= f.hidden_field :current_question_number %>
-            <%= f.hidden_field :phase %>
-            <%= f.submit "Submit your Answer" %>
-          <% end %>
+      <div class="text-start mb-3">
+        <p><b>Quiz:</b> <%= @quiz.name %></p>
+        <p><b>No:</b> #<%= @attempt.current_question_number %> of <%= @questions.size %></p>
+        <p><b>Name:</b> <%= @attempt.taker %></p>
+      </div>
+
+      <div class="card bg-danger text-white">
+        <div class="card-header">
+          <h4><%= current_question.question %></h4>
+        </div>
+        <div class="card-body text-start">
+          <p class="card-text">A.&nbsp;&nbsp;<%= current_question.option_a %> </p>
+          <p class="card-text">B.&nbsp;&nbsp;<%= current_question.option_b %> </p>
+          <p class="card-text">C.&nbsp;&nbsp;<%= current_question.option_c %> </p>
+          <p class="card-text">D.&nbsp;&nbsp;<%= current_question.option_d %> </p>
+        </div>
+        <div class="card-footer text-start">
+          <%= render 'form', url: '/quiz/answer', btn_text: "Submit your Answer", ans: true %>
+          <%#= form_for @attempt, url: '/quiz/answer' do |f| %>
+            <%#= f.select :answer, [%w[A A], %w[B B], %w[C C], %w[D D]], include_blank: true %>
+            <%#= f.hidden_field :quiz_id %>
+            <%#= f.hidden_field :number_correct %>
+            <%#= f.hidden_field :taker %>
+            <%#= f.hidden_field :current_question_number %>
+            <%#= f.hidden_field :phase %>
+            <%#= f.submit "Submit your Answer", class: 'btn btn-primary' %>
+          <%# end %>
+        </div>
+      </div>
     <% end %>
 
   <% end %>

@@ -1,44 +1,28 @@
 require 'quiz'
 require 'question'
 
-Quiz.create(id: 1, name: 'The New Years Trivia Challenge')
+Quiz.create(id: 1, name: 'Are you an introvert or an extrovert?')
 Question.create(quiz_id: 1, order: 1,
-                question: 'Which investment is shown in the graph?',
-                option_a: 'Amazon',
-                option_b: 'Bitcoin',
-                option_c: 'Ethereum',
-                option_d: 'Tesla',
+                question: 'You’re really busy at work and a colleague is telling you their life story and personal woes. You:',
+                option_a: 'Don’t dare to interrupt them',
+                option_b: 'Think it’s more important to give them some of your time; work can wait',
+                option_c: 'Listen, but with only with half an ear',
+                option_d: 'Interrupt and explain that you are really busy at the moment',
                 correct_answer: 'B'
 )
 Question.create(quiz_id: 1, order: 2,
-                question: 'In the graph, how many paths connect node A to node B that never go up?',
-                option_a: '24',
-                option_b: '27',
-                option_c: '35',
-                option_d: '37',
+                question: 'You’ve been sitting in the doctor’s waiting room for more than 25 minutes. You:',
+                option_a: 'Look at your watch every two minutes',
+                option_b: 'Bubble with inner anger, but keep quiet',
+                option_c: 'Explain to other equally impatient people in the room that the doctor is always running late',
+                option_d: 'Complain in a loud voice, while tapping your foot impatiently',
                 correct_answer: 'C'
 )
 Question.create(quiz_id: 1, order: 3,
-                question: 'On average, humans blink 20 times per minute. How many times do they blink when looking at a computer?',
-                option_a: '7',
-                option_b: '12',
-                option_c: '20',
-                option_d: '23',
+                question: 'You’re having an animated discussion with a colleague regarding a project that you’re in charge of. You:',
+                option_a: 'Don’t dare contradict them',
+                option_b: 'Think that they are obviously right',
+                option_c: 'Defend your own point of view, tooth and nail',
+                option_d: 'Continuously interrupt your colleague',
                 correct_answer: 'A'
-)
-Question.create(quiz_id: 1, order: 4,
-                question: 'Which planet in our solar system is shown here?',
-                option_a: 'Jupiter',
-                option_b: 'Mars',
-                option_c: 'Mercury',
-                option_d: 'Venus',
-                correct_answer: 'A'
-)
-Question.create(quiz_id: 1, order: 5,
-                question: 'Which city is shown here?',
-                option_a: 'Boston, MA USA',
-                option_b: 'Shenzen, China',
-                option_c: 'Tokyo, Japan',
-                option_d: 'Toronto, Canada',
-                correct_answer: 'C'
 )

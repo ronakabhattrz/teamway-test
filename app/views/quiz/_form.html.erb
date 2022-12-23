@@ -1,0 +1,18 @@
+<%= form_for @attempt, url: local_assigns[:url]  do |f| %>
+  <% if local_assigns[:ans] == true %>
+    <%= f.select(:answer, [['A', 'A'],
+                         ['B', 'B'],
+                         ['C', 'C'],
+                         ['D', 'D'],
+    ],{ :prompt => "Please select Answer:"}
+        ) %>
+  <% end %>
+  <% if local_assigns[:ans] == false %>
+    <%= f.text_field :taker, placeholder: "Enter your name" %>
+  <% end %>
+  <%= f.hidden_field :quiz_id %>
+  <%= f.hidden_field :number_correct %>
+  <%= f.hidden_field :current_question_number %>
+  <%= f.hidden_field :phase %>
+  <%= f.submit "Start the Quiz",  class: 'btn btn-primary' %>
+<% end %>

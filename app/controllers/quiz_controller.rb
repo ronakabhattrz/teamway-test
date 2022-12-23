@@ -46,13 +46,13 @@ class QuizController < ApplicationController
   end
 
   def restart
-    puts "In controller restart"
+    # puts "In controller restart"
     load_data
     render :template => "quiz/menu"
   end
 
   def answer
-    puts "In controller answer"
+    # puts "In controller answer"
     load_data
 
     current_question = @questions[@attempt.current_question_number.to_i - 1]
@@ -69,18 +69,15 @@ class QuizController < ApplicationController
 
     # Check if the answer was correct
     if @attempt.answer == current_question.correct_answer
-      @message = "Correct! The answer was #{@attempt.answer}: #{correct_answer_text}"
       if @attempt.number_correct.nil?
         @attempt.number_correct = 1
       else
         @attempt.number_correct = @attempt.number_correct + 1
       end
-    else
-      @message = "Sorry, the correct answer was #{current_question.correct_answer}: #{correct_answer_text}"
     end
-    puts "Total questions: #{@questions.size}. We are on question #{@attempt.current_question_number.to_i}"
-    puts "The correct answer was #{current_question.correct_answer}. User chose #{@attempt.answer}."
-    puts "Current number correct: #{@attempt.number_correct}"
+    # puts "Total questions: #{@questions.size}. We are on question #{@attempt.current_question_number.to_i}"
+    # puts "The correct answer was #{current_question.correct_answer}. User chose #{@attempt.answer}."
+    # puts "Current number correct: #{@attempt.number_correct}"
 
     @attempt.current_question_number = @attempt.current_question_number.to_i + 1
     render :template => "quiz/index"

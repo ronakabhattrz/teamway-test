@@ -29,7 +29,9 @@ body {
   color: #333;
   text-shadow: none; /* Prevent inheritance from `body` */
 }
-
+select#attempt_answer {
+  width: 20%;
+}
 
 /*
  * Base structure

@@ -14,38 +14,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_22_185028) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "assessment_answers", force: :cascade do |t|
-    t.string "letter"
-    t.string "answer"
-    t.boolean "correct"
-    t.integer "assessment_question_id"
-    t.integer "assessment_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["assessment_id"], name: "index_assessment_answers_on_assessment_id"
-    t.index ["assessment_question_id"], name: "index_assessment_answers_on_assessment_question_id"
-  end
-
-  create_table "assessment_options", force: :cascade do |t|
-    t.string "letter"
-    t.string "answer"
-    t.integer "assessment_question_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["assessment_question_id"], name: "index_assessment_options_on_assessment_question_id"
-  end
-
-  create_table "assessment_questions", force: :cascade do |t|
-    t.boolean "active"
-    t.integer "order"
-    t.string "letter"
-    t.string "level"
-    t.string "question"
-    t.string "answer"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "attempts", force: :cascade do |t|
     t.string "quiz_id"
     t.string "taker"
